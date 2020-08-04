@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'helpers/ui_helpers.dart';
+import 'helpers/screen_helper.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,35 +31,58 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
+  var _formKey = GlobalKey<FormState>();
   String username;
   String passoword;
+  String emailText;
+  String passwordText;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void showSnackbar(String msg, bool flag){
-    _scaffoldKey.currentState.showSnackBar(
-      SnackBar(
-        content: Text(msg),
-        backgroundColor: (flag) ? Colors.green : Colors.red,
-        action: SnackBarAction(label: "", textColor: Colors.white, onPressed: (){},),
-        duration: Duration(seconds: 10),
-        )
+  String emailVal = "";
+  String passwordVal = "";
 
-    );
+  void showSnackbar(String msg, bool flag) {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text(msg),
+      backgroundColor: (flag) ? Colors.green : Colors.red,
+      action: SnackBarAction(
+        label: "",
+        textColor: Colors.white,
+        onPressed: () {},
+      ),
+      duration: Duration(seconds: 10),
+    ));
   }
-  void validate(){
+
+  void validate() {
     print("Details");
-     username = emailController.text;
-     passoword = passwordController.text;
-     if(username.isEmpty && passoword.isEmpty){
-      showSnackbar("Fileds cannot be empty", false);
+    username = emailText;
+    passoword = passwordText;
 
-     }
-    else{
-       showSnackbar(" Login details: email: $username password: $passoword", true);
+    print("User Email: $username password: $passoword");
+    if (_formKey.currentState.validate()) {
+      showSnackbar(
+          " Login details: email: $username password: $passoword", true);
     }
+    //  if(username.isEmpty && passoword.isEmpty){
+    //    setState(() {
+    //      emailVal = "Email Cannot be empty";
+    //      passwordVal = "Password Cannot be empty";
+    //    });
+    //   showSnackbar("Fileds cannot be empty", false);
+
+    //  }
+    // else{
+    //    setState(() {
+    //      emailVal = "";
+    //      passwordVal = "";
+    //    });
+    //    showSnackbar(" Login details: email: $username password: $passoword", true);
+    // }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,25 +91,54 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Login class"),
       ),
       body: Center(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("Login Name!"),
-              TextField(
-          
-                textInputAction: TextInputAction.search,
-                keyboardType: TextInputType.emailAddress,
-                controller: emailController,
-
-              ),
-              TextField(
-                obscureText: true,
-                controller: passwordController,
-              ),
-              FlatButton(onPressed:validate, child: Text("Login"),)
-            ],
+        child: Form(
+          key: _formKey,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text("Login Name!"),
+                InputHelpers.inputFormField(
+                    //controller: emailController,
+                    isPassword: false,
+                    placeholder: "Enter Email",
+                    keyboard: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "Email cannot be empty";
+                      }
+                      setState(() {
+                          emailText = value.toString();
+                           print(emailText);
+                        });
+                    }),
+                SizedBox(
+                  height: screenHeight(context) / 30,
+                ),
+                InputHelpers.inputFormField(
+                   // controller: passwordController,
+                    isPassword: true,
+                    placeholder: "Enter Password",
+                    validator: (value) {
+                      if (value.isEmpty) {
+                      
+                        return "Password Field cannot be empty";
+                      }
+                       setState(() {
+                          passwordText = value.toString();
+                          print(passwordText);
+                       });
+                    }),
+                SizedBox(height: screenHeight(context) / 25),
+                //SizedBox(height: 10,),
+                InputHelpers.fullScreenButton(
+                    title: "Login",
+                    onTap: () => validate(),
+                    buttonColor: Colors.blue,
+                    buttunTextColor: Colors.white)
+              ],
+            ),
           ),
         ),
       ),
