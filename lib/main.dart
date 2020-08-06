@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/screen_card_vew.dart';
 import 'helpers/ui_helpers.dart';
 import 'helpers/screen_helper.dart';
 
@@ -13,10 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: SecondScreen(),
     );
   }
 }
@@ -87,13 +89,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text("Login class"),
-      ),
+//      appBar: AppBar(
+//        title: Text("Login class"),
+//      ),
       body: Center(
         child: Form(
           key: _formKey,
           child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage('assets/images/auth_background.png'),
+              ),
+            ),
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -109,33 +117,32 @@ class _MyHomePageState extends State<MyHomePage> {
                         return "Email cannot be empty";
                       }
                       setState(() {
-                          emailText = value.toString();
-                           print(emailText);
-                        });
+                        emailText = value.toString();
+                        print(emailText);
+                      });
                     }),
                 SizedBox(
                   height: screenHeight(context) / 30,
                 ),
                 InputHelpers.inputFormField(
-                   // controller: passwordController,
+                    // controller: passwordController,
                     isPassword: true,
                     placeholder: "Enter Password",
                     validator: (value) {
                       if (value.isEmpty) {
-                      
                         return "Password Field cannot be empty";
                       }
-                       setState(() {
-                          passwordText = value.toString();
-                          print(passwordText);
-                       });
+                      setState(() {
+                        passwordText = value.toString();
+                        print(passwordText);
+                      });
                     }),
                 SizedBox(height: screenHeight(context) / 25),
                 //SizedBox(height: 10,),
                 InputHelpers.fullScreenButton(
                     title: "Login",
                     onTap: () => validate(),
-                    buttonColor: Colors.blue,
+                    buttonColor: Colors.purple,
                     buttunTextColor: Colors.white)
               ],
             ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InputHelpers {
-
-    static Widget inputField(
+  static Widget inputField(
       {String title,
       String placeholder,
       TextInputType keyboard,
@@ -13,9 +12,6 @@ class InputHelpers {
       bool isPassword = false,
       double spaceBetweenTitle = 5.0,
       double padding = 5.0}) {
-
-
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -33,7 +29,7 @@ class InputHelpers {
             autofocus: true,
             autocorrect: false,
             maxLines: 1,
-            style: TextStyle(fontSize: 20 ), 
+            style: TextStyle(fontSize: 20),
             controller: controller,
             obscureText: isPassword,
             keyboardType: keyboard,
@@ -56,7 +52,7 @@ class InputHelpers {
       TextInputType keyboard,
       Function action,
       IconButton icon,
-       TextEditingController controller,
+      TextEditingController controller,
       String validationMessage,
       bool isPassword = false,
       double spaceBetweenTitle = 5.0,
@@ -79,7 +75,7 @@ class InputHelpers {
             autofocus: true,
             autocorrect: false,
             maxLines: 1,
-            style: TextStyle(fontSize: 20 ), 
+            style: TextStyle(fontSize: 20),
             controller: controller,
             obscureText: isPassword,
             keyboardType: keyboard,
@@ -97,11 +93,12 @@ class InputHelpers {
     );
   }
 
-static Widget fullScreenButton(
-      {@required String title, @required Function onTap,
-      Color buttonColor,
-      Color buttunTextColor,
-      }) {
+  static Widget fullScreenButton({
+    @required String title,
+    @required Function onTap,
+    Color buttonColor,
+    Color buttunTextColor,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -112,11 +109,11 @@ static Widget fullScreenButton(
         child: Center(
           child: Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.w500, color: buttunTextColor),
+            style:
+                TextStyle(fontWeight: FontWeight.w500, color: buttunTextColor),
           ),
         ),
       ),
     );
   }
-
 }
