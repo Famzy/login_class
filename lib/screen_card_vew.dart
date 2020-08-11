@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SecondScreen extends StatelessWidget {
+  String email;
+
+  SecondScreen({this.email});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -16,50 +20,53 @@ class SecondScreen extends StatelessWidget {
             elevation: 5,
             child: Container(
               height: 50,
-              child: Center(child: Text("Sample Data"),),
+              child: Center(
+                child: Text(email),
+              ),
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-              BoxShadow(
-                  color:  Colors.grey.shade300,
-                  blurRadius: 16,
-                  spreadRadius: 0)
-            ]
-            ),
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey.shade300,
+                      blurRadius: 16,
+                      spreadRadius: 0)
+                ]),
             child: Container(
               height: 50,
               color: Colors.white,
-              child: Center(child: Text("Sample Data"),),
+              child: Center(
+                child: Text(email),
+              ),
             ),
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-
-            Container(
-              height: 50,
-              width: 30,
-              color: Colors.red,
-            ),
-             Container(
-              height: 50,
-              width: 30,
-              color: Colors.yellow,
-            ),
-
-            Container(
-              color: Colors.green,
-              height: 50,
-              width: 30,
-            ),
-          ],),
+              Container(
+                height: 50,
+                width: 30,
+                color: Colors.red,
+              ),
+              Container(
+                height: 50,
+                width: 30,
+                color: Colors.yellow,
+              ),
+              Container(
+                color: Colors.green,
+                height: 50,
+                width: 30,
+              ),
+            ],
+          ),
         ],
-        
       ),
     );
   }
