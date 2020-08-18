@@ -17,67 +17,88 @@ class SecondPageView extends StatelessWidget {
             backgroundColor: Theme.of(context).backgroundColor,
             body: Scaffold(
               appBar: AppBar(
-                title: Text("Second Screen"),
+                title: Text("Report an Issue"),
               ),
-              body: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  InputHelpers.inputField(controller: nameContoll),
-                  Card(
-                    elevation: 5,
-                    child: Container(
-                      height: 50,
-                      child: Center(
-                        child: Text(model.email),
+              body: Container(
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                child: ListView(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        model.email,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Image.asset("assets/images/lady.png"),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    //      InputHelpers.inputField(controller: nameContoll),
+                    Container(
+                      height: 150,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey.shade300,
-                              blurRadius: 16,
-                              spreadRadius: 0)
-                        ]),
-                    child: Container(
-                      height: 50,
-                      color: Colors.white,
-                      child: Center(
-                        child: Text(model.email),
+                        border: Border(
+                          top: BorderSide(width: 1, color: Colors.purple),
+                          bottom: BorderSide(width: 1, color: Colors.purple),
+                          left: BorderSide(width: 1, color: Colors.purple),
+                          right: BorderSide(width: 1, color: Colors.purple),
+                        ),
+                      ),
+                      child: TextField(
+                        controller: nameContoll,
+                        maxLines: 10,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              EdgeInsets.only(bottom: -5, left: 10, top: 10),
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
-                  ),
-                  InputHelpers.fullScreenButton(
-                      title: "Update Name",
-                      onTap: () => model.setUserEmail(nameContoll.text)),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 30,
-                        color: Colors.red,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () => model.setUserEmail(nameContoll.text),
+                      child: Card(
+                        elevation: 5,
+                        child: Container(
+                          height: 50,
+                          child: Center(
+                            child: Text("Report Issue"),
+                          ),
+                        ),
                       ),
-                      Container(
-                        height: 50,
-                        width: 30,
-                        color: Colors.yellow,
-                      ),
-                      Container(
-                        color: Colors.green,
-                        height: 50,
-                        width: 30,
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+//                    Container(
+//                      decoration: BoxDecoration(
+//                          borderRadius: BorderRadius.circular(10),
+//                          boxShadow: [
+//                            BoxShadow(
+//                                color: Colors.grey.shade300,
+//                                blurRadius: 16,
+//                                spreadRadius: 0)
+//                          ]),
+//                      child: Container(
+//                        height: 50,
+//                        color: Colors.white,
+//                        child: Center(
+//                          child: Text(model.email),
+//                        ),
+//                      ),
+//                    ),
+                  ],
+                ),
               ),
             )));
   }
