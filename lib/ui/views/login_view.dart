@@ -6,6 +6,7 @@ import 'package:login/ui/shared/font_styles.dart';
 import 'package:login/ui/shared/ui_helpers.dart';
 import 'package:login/ui/shared/ui_reducers.dart';
 import 'package:login/ui/views/base_view.dart';
+import 'package:login/ui/views/news_list.dart';
 import 'package:login/ui/views/second_page_view.dart';
 import 'package:login/ui/widgets/busy_overlay.dart';
 
@@ -52,10 +53,12 @@ class _LoginViewViewState extends State<LoginViewView> {
           ? Navigator.push(
               context,
               PageRouteBuilder(
-                  transitionDuration: const Duration(milliseconds: 350),
-                  pageBuilder: (context, _, __) => SecondPageView(
-                        email: emailText,
-                      )))
+                transitionDuration: const Duration(milliseconds: 350),
+                pageBuilder: (context, _, __) => NewsList(
+                    // email: emailText,
+                    ),
+              ),
+            )
           : null;
     }
   }
@@ -163,7 +166,7 @@ class _LoginViewViewState extends State<LoginViewView> {
               context,
               PageRouteBuilder(
                   transitionDuration: const Duration(milliseconds: 350),
-                  pageBuilder: (context, _, __) => SecondScreen()));
+                  pageBuilder: (context, _, __) => NewsList()));
         }
       },
       child: Container(
