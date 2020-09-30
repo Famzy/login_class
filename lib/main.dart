@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:login/screen_card_vew.dart';
-import 'package:login/ui/views/login_view.dart';
-import 'helpers/ui_helpers.dart';
-import 'helpers/screen_helper.dart';
-import 'service_locator.dart';
 
-void main() {
+import 'features/presentation/views/login_view.dart';
+import 'service_locator.dart' as di;
+
+void main() async {
   // Register all the models and services before the app starts
-  setupLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.setupLocator();
   runApp(MyApp());
 }
 

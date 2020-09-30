@@ -20,6 +20,16 @@ dependencies:
   # get it
   get_it: ^1.0.3
   http:
+  hive: 1.0.0
+  equatable: ^0.4.0
+  sqflite: 1.2.2
+  flutter_bloc: ^0.21.0
+  path_provider:
+  localstorage:
+  data_connection_checker: ^0.3.4
+  shared_preferences: any
+      #For OS specific directories
+  hive_flutter: ^0.2.1
 
 dev_dependencies:
   flutter_test:
