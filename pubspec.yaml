@@ -19,7 +19,7 @@ dependencies:
   scoped_model: ^1.0.1
   # get it
   get_it: ^1.0.3
-  http:
+  http: any
 
 dev_dependencies:
   flutter_test:
